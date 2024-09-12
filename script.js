@@ -8,6 +8,7 @@ let æCounter = 0;
 let øCounter = 0;
 let åCounter = 0;
 let inputText ='';
+let finalResult = 0;
 
 updateView()
 function updateView(){
@@ -16,6 +17,7 @@ function updateView(){
     <div class="textfelt">
     
         I denne teksten var det: <br/>
+        <br/>
         ${aCounter}stk A <br/>
         ${eCounter}stk E <br/>
         ${iCounter}stk I <br/>
@@ -25,8 +27,11 @@ function updateView(){
         ${æCounter}stk Æ <br/>
         ${øCounter}stk Ø <br/>
         ${åCounter}stk Å <br/>
-    </div>
-    
+        <br/>
+        Totalt var det ${finalResult} stk vokaler.
+        </div>
+        
+        <br/>
     <input type="text" value="${inputText}"onchange="printLetters(this.value)">
     <button onclick="submit()">Print Letters</button>
     </div>
@@ -42,25 +47,16 @@ function printLetters(inputString){
 function letterChecker(inputString){
     inputText = inputString;
     for(let index = 0; index <= inputText.length; index++){
-        aResult = inputText.charAt(index).includes('a');
-        eResult = inputText.charAt(index).includes('e');
-        iResult = inputText.charAt(index).includes('i');
-        oResult = inputText.charAt(index).includes('o');
-        uResult = inputText.charAt(index).includes('u');
-        yResult = inputText.charAt(index).includes('y');
-        æResult = inputText.charAt(index).includes('æ');
-        øResult = inputText.charAt(index).includes('ø');
-        åResult = inputText.charAt(index).includes('å');
-        if (aResult == true) aCounter++; 
-        if (eResult == true) eCounter++; 
-        if (iResult == true) iCounter++; 
-        if (oResult == true) oCounter++; 
-        if (uResult == true) uCounter++; 
-        if (yResult == true) yCounter++; 
-        if (æResult == true) æCounter++; 
-        if (øResult == true) øCounter++; 
-        if (åResult == true) åCounter++; 
+        if (inputText.charAt(index).includes('a')) aCounter++; 
+        if (inputText.charAt(index).includes('e')) eCounter++; 
+        if (inputText.charAt(index).includes('i')) iCounter++; 
+        if (inputText.charAt(index).includes('o')) oCounter++; 
+        if (inputText.charAt(index).includes('u')) uCounter++; 
+        if (inputText.charAt(index).includes('y')) yCounter++; 
+        if (inputText.charAt(index).includes('æ')) æCounter++; 
+        if (inputText.charAt(index).includes('ø')) øCounter++; 
+        if (inputText.charAt(index).includes('å')) åCounter++; 
     }
-    console.log(aCounter)
+    finalResult = aCounter + eCounter + iCounter + oCounter + uCounter + yCounter + æCounter + øCounter + åCounter;
     updateView();
 }
